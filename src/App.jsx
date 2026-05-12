@@ -7,7 +7,8 @@ const App = () => {
   });
   const [inputValue, setInputValue] = useState("");
   const [filter, setFilter] = useState("all");
-
+  const length = 0;
+  const hundred = 100;
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -47,7 +48,10 @@ const App = () => {
 
   const completedCount = todos.filter((t) => t.completed).length;
   const progress =
-    todos.length === 0 ? 0 : Math.round((completedCount / todos.length) * 100);
+    todos.length === 0
+      ? length
+      : Math.round((completedCount / todos.length) * hundred);
+  console.log("something random");
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center">

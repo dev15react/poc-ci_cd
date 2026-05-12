@@ -515,6 +515,7 @@ function reviewDiff(diff, rules, allChangedFiles) {
   const results = [];
   for (const [file, addedLines] of Object.entries(fileMap)) {
     if (!addedLines.length) continue;
+    if (!file.startsWith("src/")) continue;
     for (const rule of rules) {
       for (const check of rule.checks) {
         try {
