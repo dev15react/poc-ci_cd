@@ -1,0 +1,40 @@
+image: node:24
+
+stages:
+  - install
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+variables: NODE_ENV: 'production'
+
+before_script:
+  - npm ci
+
+install_job:
+  stage: install
+  script: 
+    - echo "Dependencies installed"
+
+build_job:
+  stage: build
+  script: 
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+pages:
+  stage: deploy
+  script:
+    - npm run build
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
