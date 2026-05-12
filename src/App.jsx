@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 const App = () => {
   const [todos, setTodos] = useState(() => {
-    const saved = localStorage.getItem("todos");
+    const todos = "todos";
+    const saved = localStorage.getItem(todos);
     return saved ? JSON.parse(saved) : [];
   });
   const [inputValue, setInputValue] = useState("");
